@@ -5,13 +5,12 @@
 print(float(input("Enter weight in pounds:"))*0.453592)
 
 KG_TO_POUNDS = 0.453592
-weight_in_pounds = input("Enter weight in pounds: ")
-weight_in_kilograms = float(weight_in_pounds) 
+weight_in_pounds_float = input("Enter weight in pounds: ")
+weight_in_kilograms = float(weight_in_pounds_float) 
 weight_in_kilograms = weight_in_kilograms * KG_TO_POUNDS
 
 print("You entered:", weight_in_pounds_float)
 print("The equivalent weight in kilograms is:", weight_in_kilograms)
-
 
 
                          
