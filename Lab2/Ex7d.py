@@ -11,9 +11,9 @@ def F_to_C(fahrenheit):
 
 
 fahrenheit_input = input("Enter temperature in Fahrenheit: ")
-farenheit_float = float(fahrenheit_input)
+fahrenheit_float = float(fahrenheit_input)
 
-celsius_value = F_to_C(farenheit_float)
+celsius_value = F_to_C(fahrenheit_float)
 
-print("You entered:", farenheit_float)
+print("You entered:", fahrenheit_float)
 print("the temperature in Celsius is:", celsius_value)
