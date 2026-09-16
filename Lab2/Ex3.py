@@ -8,4 +8,5 @@ squared_value = float_value ** 2
 
 print("You entered:", float_value)
 print("The square of the number you entered is:", squared_value, 'Have a nice day!')
+print("Rounded to two decimal places:", round(float_value, 2))
 

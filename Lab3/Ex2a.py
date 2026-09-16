@@ -1,5 +1,2 @@
-def midpoint(first_number, second_number):
-	return (first_number + second_number) / 2
-
-
-
+def midpoint(number1, number2):
+	return (number1 + number2) / 2

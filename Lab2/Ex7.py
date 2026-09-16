@@ -3,11 +3,11 @@
 # Date : Sept. 4, 2026
 
 fahrenheit_input = float(input("Enter temperature in Fahrenheit: "))
-farenheit_float = float(fahrenheit_input)
+fahrenheit_float = float(fahrenheit_input)
 
-celsius_value = (farenheit_float - 32) * 5/9
+celsius_value = (fahrenheit_float - 32) * 5/9
 
 celsius_value = round(celsius_value, 2)
 
-print("You entered:", farenheit_float)
+print("You entered:", fahrenheit_float)
 print("the temperature in Celsius is:", celsius_value)
