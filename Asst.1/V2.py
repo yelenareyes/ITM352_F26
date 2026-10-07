@@ -1,4 +1,4 @@
-# Interactivve quiz system, second version
+# Interactive quiz system, second version
 # Make a list with questions and correct answers
 
 questions =[

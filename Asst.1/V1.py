@@ -1,5 +1,5 @@
 First version of the quiz game
-# Name: Rick Kazman
+# Name: Yelena Reyes
 # Date: October 2, 2026
 
 answer = input("What is the capital of France? ")
