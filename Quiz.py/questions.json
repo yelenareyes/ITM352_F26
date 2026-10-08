@@ -1,0 +1,885 @@
+{
+  "title": "Filipino 101 Study Quiz",
+  "source": "Filipino 101 Midterm Complete Study Guide.pdf",
+  "categories": [
+    "Alphabet & Pronunciation",
+    "Introductions",
+    "Interrogatives",
+    "Linkers (-na and -ng)",
+    "Adjectives",
+    "May / Mayroon / Wala",
+    "Mahilig",
+    "Verb Conjugations",
+    "Numbers",
+    "Dates and Time",
+    "Feelings",
+    "Prepositions",
+    "Mixed Final Review"
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "category": "Alphabet & Pronunciation",
+      "question": "How many letters are in the modern Filipino alphabet according to the guide?",
+      "choices": [
+        "26",
+        "27",
+        "28",
+        "29"
+      ],
+      "correct_answers": [
+        "28"
+      ],
+      "hint": "The guide includes the standard English alphabet plus two additional letters.",
+      "explanation": "The guide says the modern Filipino alphabet has 28 letters: the standard English alphabet plus Ñ and NG."
+    },
+    {
+      "id": 2,
+      "category": "Alphabet & Pronunciation",
+      "question": "Which is treated as a single letter in the Filipino alphabet?",
+      "choices": [
+        "MA",
+        "NG",
+        "SI",
+        "TA"
+      ],
+      "correct_answers": [
+        "NG"
+      ],
+      "hint": "Remember the guide's exam tip about a digraph.",
+      "explanation": "The guide specifically says NG is treated as a single letter in the alphabet."
+    },
+    {
+      "id": 3,
+      "category": "Alphabet & Pronunciation",
+      "question": "According to the pronunciation guide, the vowel A sounds like:",
+      "choices": [
+        "ee as in see",
+        "oh as in go",
+        "ah as in father",
+        "oo as in moon"
+      ],
+      "correct_answers": [
+        "ah as in father"
+      ],
+      "hint": "Think of the example word Ako.",
+      "explanation": "The guide gives A as “ah,” as in father, with Ako and Aso as examples."
+    },
+    {
+      "id": 4,
+      "category": "Alphabet & Pronunciation",
+      "question": "Which word is listed as an example for the NG sound?",
+      "choices": [
+        "Ngipin",
+        "Aso",
+        "Upuan",
+        "Enero"
+      ],
+      "correct_answers": [
+        "Ngipin"
+      ],
+      "hint": "Look for the example beginning with NG.",
+      "explanation": "Ngipin is listed as an example of the NG sound."
+    },
+    {
+      "id": 5,
+      "category": "Introductions",
+      "question": "What does “Ako si [Name].” mean?",
+      "choices": [
+        "Where do you live?",
+        "I am [Name].",
+        "He is a student.",
+        "I like traveling."
+      ],
+      "correct_answers": [
+        "I am [Name]."
+      ],
+      "hint": "This is the self-introduction pattern with a name.",
+      "explanation": "The guide translates “Ako si [Name].” as “I am [Name].”"
+    },
+    {
+      "id": 6,
+      "category": "Introductions",
+      "question": "Which sentence means “I am a student at UH Mānoa”?",
+      "choices": [
+        "Ako si UH Mānoa.",
+        "Taga-UH Mānoa ako.",
+        "Ako ay estudyante sa UH Mānoa.",
+        "Siya ay estudyante."
+      ],
+      "correct_answers": [
+        "Ako ay estudyante sa UH Mānoa."
+      ],
+      "hint": "Look for the role and place structure.",
+      "explanation": "The guide gives “Ako ay estudyante sa UH Mānoa” as this example."
+    },
+    {
+      "id": 7,
+      "category": "Introductions",
+      "question": "What does “Taga-Hawaii ako.” mean?",
+      "choices": [
+        "I live in Hawaii.",
+        "I am from Hawaii.",
+        "I am going to Hawaii.",
+        "I like Hawaii."
+      ],
+      "correct_answers": [
+        "I am from Hawaii."
+      ],
+      "hint": "Taga- indicates origin in this sentence pattern.",
+      "explanation": "The guide translates “Taga-Hawaii ako” as “I am from Hawaii.”"
+    },
+    {
+      "id": 8,
+      "category": "Introductions",
+      "question": "Which phrase means “[Name] is my friend”?",
+      "choices": [
+        "Siya si [Name].",
+        "Kaibigan ko si [Name].",
+        "Ako si [Name].",
+        "Saan ka galing?"
+      ],
+      "correct_answers": [
+        "Kaibigan ko si [Name]."
+      ],
+      "hint": "Find the phrase under “Introducing Others.”",
+      "explanation": "The guide gives “Kaibigan ko si [Name]” as “[Name] is my friend.”"
+    },
+    {
+      "id": 9,
+      "category": "Interrogatives",
+      "question": "What does “Ano ang pangalan mo?” ask?",
+      "choices": [
+        "How old are you?",
+        "Where do you live?",
+        "What is your name?",
+        "Where are you from?"
+      ],
+      "correct_answers": [
+        "What is your name?"
+      ],
+      "hint": "Ano asks “what” in this question.",
+      "explanation": "The guide translates the question as “What is your name?”"
+    },
+    {
+      "id": 10,
+      "category": "Interrogatives",
+      "question": "Which question means “How old are you?”",
+      "choices": [
+        "Saan ka galing?",
+        "Ilang taong gulang ka?",
+        "Saan ka nakatira?",
+        "Ano ang pangalan mo?"
+      ],
+      "correct_answers": [
+        "Ilang taong gulang ka?"
+      ],
+      "hint": "Look for the question about age.",
+      "explanation": "The guide pairs “Ilang taong gulang ka?” with “How old are you?”"
+    },
+    {
+      "id": 11,
+      "category": "Interrogatives",
+      "question": "What does “Saan ka nakatira?” mean?",
+      "choices": [
+        "Where do you live?",
+        "Where are you from?",
+        "What is your name?",
+        "What time is it?"
+      ],
+      "correct_answers": [
+        "Where do you live?"
+      ],
+      "hint": "Nakatira is used in the living/residence example.",
+      "explanation": "The guide translates it as “Where do you live?”"
+    },
+    {
+      "id": 12,
+      "category": "Interrogatives",
+      "question": "Which question means “Where are you from?”",
+      "choices": [
+        "Ano ang pangalan mo?",
+        "Saan ka galing?",
+        "Ilang taong gulang ka?",
+        "Anong oras na?"
+      ],
+      "correct_answers": [
+        "Saan ka galing?"
+      ],
+      "hint": "This question is paired with “Taga-Hawaii ako.”",
+      "explanation": "The guide lists “Saan ka galing?” as “Where are you from?”"
+    },
+    {
+      "id": 13,
+      "category": "Linkers (-na and -ng)",
+      "question": "Choose the correct phrase: maganda ___ babae.",
+      "choices": [
+        "na",
+        "-ng",
+        "-g na",
+        "wala"
+      ],
+      "correct_answers": [
+        "-ng"
+      ],
+      "hint": "The word maganda ends in a vowel.",
+      "explanation": "The guide gives “magandang babae”; words ending in a vowel attach -ng."
+    },
+    {
+      "id": 14,
+      "category": "Linkers (-na and -ng)",
+      "question": "Choose the correct phrase: masipag ___ estudyante.",
+      "choices": [
+        "-ng",
+        "-g",
+        "na",
+        "sa"
+      ],
+      "correct_answers": [
+        "na"
+      ],
+      "hint": "Masipag ends in a consonant other than N.",
+      "explanation": "The guide says to use the separate word “na” after other consonants."
+    },
+    {
+      "id": 15,
+      "category": "Linkers (-na and -ng)",
+      "question": "Which form follows the guide's rule for a word ending in N?",
+      "choices": [
+        "Attach -ng",
+        "Attach -g",
+        "Use separate “na”",
+        "Remove the final N"
+      ],
+      "correct_answers": [
+        "Attach -g"
+      ],
+      "hint": "The rule matrix has a special case for final N.",
+      "explanation": "The guide says a word ending in N attaches -g, as in “aliping bata.”"
+    },
+    {
+      "id": 16,
+      "category": "Linkers (-na and -ng)",
+      "question": "Which phrase is shown in the guide as meaning “big house”?",
+      "choices": [
+        "malaki na bahay",
+        "malaking bahay",
+        "malakig bahay",
+        "bahay malaking"
+      ],
+      "correct_answers": [
+        "malaking bahay"
+      ],
+      "hint": "Malaki ends in a vowel.",
+      "explanation": "The guide's example is “malaking bahay.”"
+    },
+    {
+      "id": 17,
+      "category": "Adjectives",
+      "question": "What does “matalino” mean?",
+      "choices": [
+        "small",
+        "intelligent",
+        "fast",
+        "handsome"
+      ],
+      "correct_answers": [
+        "intelligent"
+      ],
+      "hint": "This adjective appears in the common adjectives list.",
+      "explanation": "The guide translates matalino as intelligent."
+    },
+    {
+      "id": 18,
+      "category": "Adjectives",
+      "question": "Which word means “hardworking”?",
+      "choices": [
+        "masipag",
+        "mabilis",
+        "maliit",
+        "malungkot"
+      ],
+      "correct_answers": [
+        "masipag"
+      ],
+      "hint": "It describes the student in one sample sentence.",
+      "explanation": "The guide lists masipag as hardworking."
+    },
+    {
+      "id": 19,
+      "category": "Adjectives",
+      "question": "What does “Ang bahay ay malaki at maganda.” mean?",
+      "choices": [
+        "The house is small and kind.",
+        "The house is big and beautiful.",
+        "The student is smart and hardworking.",
+        "The dog is small but kind."
+      ],
+      "correct_answers": [
+        "The house is big and beautiful."
+      ],
+      "hint": "At joins the two descriptive words in this example.",
+      "explanation": "The guide translates the sentence as “The house is big and beautiful.”"
+    },
+    {
+      "id": 20,
+      "category": "Adjectives",
+      "question": "Which sentence means “The dog is small but kind”?",
+      "choices": [
+        "Ang aso ay maliit ngunit mabait.",
+        "Ang aso ay malaki at maganda.",
+        "Ang bahay ay maliit at mabilis.",
+        "Ang estudyante ay masipag."
+      ],
+      "correct_answers": [
+        "Ang aso ay maliit ngunit mabait."
+      ],
+      "hint": "Look for maliit and mabait together.",
+      "explanation": "This exact example appears in the guide's adjective section."
+    },
+    {
+      "id": 21,
+      "category": "May / Mayroon / Wala",
+      "question": "Which sentence means “I have a car” using May?",
+      "choices": [
+        "Wala akong kotse.",
+        "May kotse ako.",
+        "Mahilig ako sa kotse.",
+        "Mayroon akong pera."
+      ],
+      "correct_answers": [
+        "May kotse ako."
+      ],
+      "hint": "The guide's pattern is May + noun + pronoun.",
+      "explanation": "The guide gives “May kotse ako” as “I have a car.”"
+    },
+    {
+      "id": 22,
+      "category": "May / Mayroon / Wala",
+      "question": "Which sentence means “I do not have money”?",
+      "choices": [
+        "May pera ako.",
+        "Wala akong pera.",
+        "Mayroon akong pera.",
+        "Mahilig ako sa pera."
+      ],
+      "correct_answers": [
+        "Wala akong pera."
+      ],
+      "hint": "Wala expresses negation or not having something.",
+      "explanation": "The guide gives “Wala akong pera” as “I do not have money.”"
+    },
+    {
+      "id": 23,
+      "category": "May / Mayroon / Wala",
+      "question": "According to the guide, Mayroon is often used with:",
+      "choices": [
+        "A pronoun plus -ng, in formal contexts",
+        "Only adjectives",
+        "Only dates",
+        "A preposition and location"
+      ],
+      "correct_answers": [
+        "A pronoun plus -ng, in formal contexts"
+      ],
+      "hint": "Compare the Mayroon example with May.",
+      "explanation": "The guide describes Mayroon + pronoun+-ng + noun, as in “Mayroon akong kotse.”"
+    },
+    {
+      "id": 24,
+      "category": "May / Mayroon / Wala",
+      "question": "Which sentence is the guide's contrast example for “I have a book”?",
+      "choices": [
+        "May libro ako.",
+        "Wala akong libro.",
+        "Nasa ilalim ng libro.",
+        "Masaya ako."
+      ],
+      "correct_answers": [
+        "May libro ako."
+      ],
+      "hint": "This sentence appears in the quick contrast matrix.",
+      "explanation": "The guide explicitly gives “May libro ako” as “I have a book.”"
+    },
+    {
+      "id": 25,
+      "category": "Mahilig",
+      "question": "What does “Mahilig ako sa basketball.” mean?",
+      "choices": [
+        "I am angry.",
+        "I like basketball.",
+        "I have a basketball.",
+        "I am playing basketball now."
+      ],
+      "correct_answers": [
+        "I like basketball."
+      ],
+      "hint": "Mahilig sa expresses a preference or something one likes.",
+      "explanation": "The guide translates this example as “I like basketball.”"
+    },
+    {
+      "id": 26,
+      "category": "Mahilig",
+      "question": "Which phrase expresses liking or being fond of something?",
+      "choices": [
+        "wala sa",
+        "mahilig sa",
+        "nasa ilalim ng",
+        "ilang taong gulang"
+      ],
+      "correct_answers": [
+        "mahilig sa"
+      ],
+      "hint": "This is the preference formula in the guide.",
+      "explanation": "The guide defines “mahilig sa” as fond of / likes."
+    },
+    {
+      "id": 27,
+      "category": "Mahilig",
+      "question": "What does “Mahilig siya sa musika.” mean?",
+      "choices": [
+        "She likes music.",
+        "She is tired.",
+        "She is from Hawaii.",
+        "She has a book."
+      ],
+      "correct_answers": [
+        "She likes music."
+      ],
+      "hint": "Siya is used in the guide's example.",
+      "explanation": "The guide translates the sentence as “She likes music.”"
+    },
+    {
+      "id": 28,
+      "category": "Mahilig",
+      "question": "Complete the guide's sentence: “Mahilig kami sa ___.”",
+      "choices": [
+        "kotse",
+        "pagkain",
+        "upuan",
+        "pera"
+      ],
+      "correct_answers": [
+        "pagkain"
+      ],
+      "hint": "The guide includes an example about enjoying food.",
+      "explanation": "The example is “Mahilig kami sa pagkain” (We enjoy food)."
+    },
+    {
+      "id": 29,
+      "category": "Verb Conjugations",
+      "question": "Which form of kumain is listed for the future?",
+      "choices": [
+        "kumakain",
+        "kumain",
+        "kakain",
+        "umiinom"
+      ],
+      "correct_answers": [
+        "kakain"
+      ],
+      "hint": "Use the guide's future / contemplated column.",
+      "explanation": "The chart lists Kakain as the future form of Kumain."
+    },
+    {
+      "id": 30,
+      "category": "Verb Conjugations",
+      "question": "Which form of mag-aral is listed for the present/incomplete aspect?",
+      "choices": [
+        "Nag-aral",
+        "Nag-aaral",
+        "Mag-aaral",
+        "Kumakain"
+      ],
+      "correct_answers": [
+        "Nag-aaral"
+      ],
+      "hint": "Ngayon is a clue for present/incomplete aspect.",
+      "explanation": "The chart lists Nag-aaral as the present form of Mag-aral."
+    },
+    {
+      "id": 31,
+      "category": "Verb Conjugations",
+      "question": "Which verb form is associated with “Kahapon” (yesterday)?",
+      "choices": [
+        "Future",
+        "Present",
+        "Past/completed",
+        "Question"
+      ],
+      "correct_answers": [
+        "Past/completed"
+      ],
+      "hint": "Kahapon is the guide's time clue for past.",
+      "explanation": "The guide labels kahapon as yesterday (past)."
+    },
+    {
+      "id": 32,
+      "category": "Verb Conjugations",
+      "question": "Complete: “Bukas, ___ ako para sa exam.”",
+      "choices": [
+        "Nag-aral",
+        "Nag-aaral",
+        "Mag-aaral",
+        "Uminom"
+      ],
+      "correct_answers": [
+        "Mag-aaral"
+      ],
+      "hint": "Bukas means tomorrow, a future clue.",
+      "explanation": "The guide's answer key gives Mag-aaral for this future sentence."
+    },
+    {
+      "id": 33,
+      "category": "Numbers",
+      "question": "What is “siyam” in English?",
+      "choices": [
+        "seven",
+        "eight",
+        "nine",
+        "ten"
+      ],
+      "correct_answers": [
+        "nine"
+      ],
+      "hint": "Find siyam in the numbers 1–20 table.",
+      "explanation": "The guide lists siyam as number 9."
+    },
+    {
+      "id": 34,
+      "category": "Numbers",
+      "question": "Which Filipino word means 12?",
+      "choices": [
+        "labing-isa",
+        "labindalawa",
+        "labintatlo",
+        "labing-apat"
+      ],
+      "correct_answers": [
+        "labindalawa"
+      ],
+      "hint": "It appears in the 11–20 column.",
+      "explanation": "The guide lists labindalawa as 12."
+    },
+    {
+      "id": 35,
+      "category": "Numbers",
+      "question": "What number is “dalawampu”?",
+      "choices": [
+        "10",
+        "12",
+        "19",
+        "20"
+      ],
+      "correct_answers": [
+        "20"
+      ],
+      "hint": "It is the last number in the guide's 1–20 list.",
+      "explanation": "The guide lists dalawampu as 20."
+    },
+    {
+      "id": 36,
+      "category": "Numbers",
+      "question": "Which word means 5?",
+      "choices": [
+        "lima",
+        "apat",
+        "anim",
+        "pito"
+      ],
+      "correct_answers": [
+        "lima"
+      ],
+      "hint": "Look at the first ten numbers.",
+      "explanation": "The guide lists lima as 5."
+    },
+    {
+      "id": 37,
+      "category": "Dates and Time",
+      "question": "Which Filipino month means January?",
+      "choices": [
+        "Hunyo",
+        "Enero",
+        "Oktubre",
+        "Marso"
+      ],
+      "correct_answers": [
+        "Enero"
+      ],
+      "hint": "It appears first in the months list.",
+      "explanation": "The guide lists Enero as a month."
+    },
+    {
+      "id": 38,
+      "category": "Dates and Time",
+      "question": "What does “Anong oras na?” mean?",
+      "choices": [
+        "What is your name?",
+        "What time is it?",
+        "How old are you?",
+        "Where do you live?"
+      ],
+      "correct_answers": [
+        "What time is it?"
+      ],
+      "hint": "This is the guide's time question.",
+      "explanation": "The guide translates “Anong oras na?” as “What time is it?”"
+    },
+    {
+      "id": 39,
+      "category": "Dates and Time",
+      "question": "“Alas tres ng hapon” means:",
+      "choices": [
+        "3:00 AM",
+        "6:00 AM",
+        "3:00 PM",
+        "6:00 PM"
+      ],
+      "correct_answers": [
+        "3:00 PM"
+      ],
+      "hint": "Hapon means afternoon in the example.",
+      "explanation": "The guide gives “Alas tres ng hapon” as 3:00 PM."
+    },
+    {
+      "id": 40,
+      "category": "Dates and Time",
+      "question": "Which date is written in the guide as the formal/traditional format for October 6, 2026?",
+      "choices": [
+        "Oktubre 6, 2026",
+        "Ika-anim ng Oktubre, 2026",
+        "Anim Oktubre 2026",
+        "Oktubre ika-anim 2026"
+      ],
+      "correct_answers": [
+        "Ika-anim ng Oktubre, 2026"
+      ],
+      "hint": "Look for “Formal/Traditional Format.”",
+      "explanation": "The guide gives “Ika-anim ng Oktubre, 2026” as the formal/traditional format."
+    },
+    {
+      "id": 41,
+      "category": "Feelings",
+      "question": "What does “pagod” mean?",
+      "choices": [
+        "happy",
+        "tired",
+        "hungry",
+        "thirsty"
+      ],
+      "correct_answers": [
+        "tired"
+      ],
+      "hint": "It appears in the feelings vocabulary list.",
+      "explanation": "The guide translates pagod as tired."
+    },
+    {
+      "id": 42,
+      "category": "Feelings",
+      "question": "Which sentence means “I am nervous”?",
+      "choices": [
+        "Masaya ako.",
+        "Galit ako.",
+        "Kinakabahan ako.",
+        "Uhaw ako."
+      ],
+      "correct_answers": [
+        "Kinakabahan ako."
+      ],
+      "hint": "Look for the feeling translated as nervous.",
+      "explanation": "The guide gives “Kinakabahan ako” as “I am nervous.”"
+    },
+    {
+      "id": 43,
+      "category": "Feelings",
+      "question": "What does “gutom” mean?",
+      "choices": [
+        "angry",
+        "hungry",
+        "annoyed",
+        "excited"
+      ],
+      "correct_answers": [
+        "hungry"
+      ],
+      "hint": "It is one of the basic feelings/states listed.",
+      "explanation": "The guide translates gutom as hungry."
+    },
+    {
+      "id": 44,
+      "category": "Feelings",
+      "question": "Which Filipino word means “excited”?",
+      "choices": [
+        "nasasabik",
+        "malungkot",
+        "naiinis",
+        "mabait"
+      ],
+      "correct_answers": [
+        "nasasabik"
+      ],
+      "hint": "Look for the feeling paired with “I am excited.”",
+      "explanation": "The guide translates nasasabik as excited."
+    },
+    {
+      "id": 45,
+      "category": "Prepositions",
+      "question": "What does “sa ilalim ng” mean?",
+      "choices": [
+        "on top of",
+        "beside",
+        "under",
+        "outside"
+      ],
+      "correct_answers": [
+        "under"
+      ],
+      "hint": "This phrase is used for the bag under the chair.",
+      "explanation": "The guide translates sa ilalim ng as under."
+    },
+    {
+      "id": 46,
+      "category": "Prepositions",
+      "question": "Which phrase means “in front of”?",
+      "choices": [
+        "sa likod ng",
+        "sa harap ng",
+        "sa loob ng",
+        "sa pagitan ng"
+      ],
+      "correct_answers": [
+        "sa harap ng"
+      ],
+      "hint": "Compare harap (front) with likod (behind).",
+      "explanation": "The guide lists sa harap ng as in front of."
+    },
+    {
+      "id": 47,
+      "category": "Prepositions",
+      "question": "“Ang libro ay nasa ibabaw ng mesa.” means:",
+      "choices": [
+        "The book is inside the bag.",
+        "The book is on top of the table.",
+        "The book is behind the tree.",
+        "The book is beside the dog."
+      ],
+      "correct_answers": [
+        "The book is on top of the table."
+      ],
+      "hint": "Look for ibabaw and mesa.",
+      "explanation": "This is the guide's example for sa ibabaw ng (on top of)."
+    },
+    {
+      "id": 48,
+      "category": "Prepositions",
+      "question": "Which phrase means “between”?",
+      "choices": [
+        "sa labas ng",
+        "sa tabi ng",
+        "sa pagitan ng",
+        "sa loob ng"
+      ],
+      "correct_answers": [
+        "sa pagitan ng"
+      ],
+      "hint": "The example mentions being between Ben and Yelena.",
+      "explanation": "The guide translates sa pagitan ng as between."
+    },
+    {
+      "id": 49,
+      "category": "Mixed Final Review",
+      "question": "Which sentence means “I am studying Filipino now” in the guide's answer key?",
+      "choices": [
+        "Nag-aral ako ng Filipino ngayon.",
+        "Nag-aaral ako ng Filipino ngayon.",
+        "Mag-aaral ako ng Filipino ngayon.",
+        "Kumakain ako ng Filipino ngayon."
+      ],
+      "correct_answers": [
+        "Nag-aaral ako ng Filipino ngayon."
+      ],
+      "hint": "Ngayon signals present/incomplete aspect.",
+      "explanation": "The guide's answer key gives “Nag-aaral ako ng Filipino ngayon.”"
+    },
+    {
+      "id": 50,
+      "category": "Mixed Final Review",
+      "question": "Which sentence means “The cat is on top of the chair”?",
+      "choices": [
+        "Ang pusa ay nasa ibabaw ng upuan.",
+        "Ang pusa ay nasa ilalim ng upuan.",
+        "Ang aso ay nasa ibabaw ng mesa.",
+        "Ang bata ay nasa likod ng puno."
+      ],
+      "correct_answers": [
+        "Ang pusa ay nasa ibabaw ng upuan."
+      ],
+      "hint": "Match pusa (cat), ibabaw (on top), and upuan (chair).",
+      "explanation": "This sentence appears in the guide's practice-test answer key."
+    },
+    {
+      "id": 51,
+      "category": "Mixed Final Review",
+      "question": "Which sentence means “Ben is hardworking and smart” in the answer key?",
+      "choices": [
+        "Si Ben ay maliit at mabilis.",
+        "Si Ben ay masipag at matalino.",
+        "Si Ben ay malungkot at pagod.",
+        "Si Ben ay mabait ngunit galit."
+      ],
+      "correct_answers": [
+        "Si Ben ay masipag at matalino."
+      ],
+      "hint": "Masipag means hardworking; matalino means intelligent.",
+      "explanation": "The answer key gives “Si Ben ay masipag at matalino.”"
+    },
+    {
+      "id": 52,
+      "category": "Mixed Final Review",
+      "question": "Which set contains the pronouns listed in the guide?",
+      "choices": [
+        "ako, ikaw, siya",
+        "mesa, upuan, bahay",
+        "Enero, Mayo, Hunyo",
+        "masaya, pagod, gutom"
+      ],
+      "correct_answers": [
+        "ako, ikaw, siya"
+      ],
+      "hint": "The cheat sheet lists these under Essential Pronouns.",
+      "explanation": "The guide lists ako (I), ikaw (you), and siya (he/she)."
+    },
+    {
+      "id": 53,
+      "category": "Mixed Final Review",
+      "question": "Which sentence shows “I have a book, but I do not have a car”?",
+      "choices": [
+        "May libro ako ngunit wala akong kotse.",
+        "Wala akong libro ngunit may kotse ako.",
+        "Mahilig ako sa libro at kotse.",
+        "Mayroon akong bahay."
+      ],
+      "correct_answers": [
+        "May libro ako ngunit wala akong kotse."
+      ],
+      "hint": "Combine the guide's May and Wala examples.",
+      "explanation": "The practice-test answer key gives “May libro ako ngunit wala akong kotse.”"
+    },
+    {
+      "id": 54,
+      "category": "Mixed Final Review",
+      "question": "Which phrase means “The money is inside the bag”?",
+      "choices": [
+        "Ang pera ay nasa loob ng bag.",
+        "Ang pera ay nasa labas ng bahay.",
+        "Ang libro ay nasa ibabaw ng mesa.",
+        "Ang aso ay nasa tabi ng pusa."
+      ],
+      "correct_answers": [
+        "Ang pera ay nasa loob ng bag."
+      ],
+      "hint": "Loob means inside.",
+      "explanation": "The guide's preposition table gives this exact example."
+    }
+  ]
+}
