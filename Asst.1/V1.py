@@ -1,4 +1,4 @@
-First version of the quiz game
+# First version of the quiz game
 # Name: Yelena Reyes
 # Date: October 2, 2026
 

@@ -5,13 +5,17 @@
 # Randomize the order of the questions and the order of the answers for each question.
 
 from string import ascii_lowercase
-import json
 import random
-from pathlib import Path
 
-with Path(__file__).with_name("questions.json").open(encoding="utf-8") as questions_file:
-    questions = json.load(questions_file)
-
+questions ={
+    "What is the capital of France?": ["Paris", "Nice", "Avignon"],
+    "What is the capital of Japan?": ["Tokyo", "Shinjuku", "Kyoto"],
+    "The Last Supper was painted by which artist?": ["Leonardo da Vinci", "Arvaggio", "Michelangelo"],
+    "What is the capital of Italy?": ["Rome", "Milan", "Naples"],
+    "The Mona Lisa was painted by which artist?": ["Leonardo da Vinci", "Raphael", "Michelangelo"],
+    "What is the capital of Spain?": ["Madrid", "Barcelona", "Seville"],
+    }
+    
 NUM_QUESTIONS_PER_QUIZ = 5
 
 num_questions = min(NUM_QUESTIONS_PER_QUIZ, len(questions))
