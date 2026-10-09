@@ -7,3 +7,4 @@ Numbers: 8/8
 All categories: 20/108
 Feelings: 1/8
 Prepositions: 3/8
+Interrogatives: 6/8
