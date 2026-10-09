@@ -5,10 +5,12 @@
 
 import json
 import random
+import time
 
 QUESTION_FILE = "questions.json" 
 SCORE_FILE = "scores.txt"
 LABELS = "abcd"
+SPEED_BONUS_SECONDS = 10
 
 
 def choose_category(categories):
@@ -34,8 +36,8 @@ def choose_category(categories):
     return categories[int(choice) - 1]
 
 
-def ask_question(item):
-    """Display a question and return 1 if correct, otherwise 0."""
+def ask_question(item, fifty_fifty_used):
+    """Ask one question and return points earned and lifeline usage."""
     choices = item["choices"][:]
     random.shuffle(choices)
 
@@ -50,27 +52,55 @@ def ask_question(item):
     for label, choice in answer_choices.items():
         print(label + ") " + choice)
 
-    answer = input("Choose a, b, c, or d (or h for hint): ").lower().strip()
+    question_start = time.perf_counter()
+    while True:
+        answer = input(
+            "Choose a, b, c, or d (h for hint, f for 50/50): "
+        ).lower().strip()
 
-    while answer not in answer_choices:
         if answer == "h":
             print("Hint:", item["hint"])
+        elif answer == "f":
+            if fifty_fifty_used:
+                print("The 50/50 feature has already been used.")
+            else:
+                wrong_labels = []
+                for label, choice in answer_choices.items():
+                    if choice not in item["correct_answers"]:
+                        wrong_labels.append(label)
+
+                if len(wrong_labels) < 2:
+                    print("The 50/50 feature is not available for this question.")
+                else:
+                    labels_to_remove = random.sample(wrong_labels, k=2)
+                    for label in labels_to_remove:
+                        del answer_choices[label]
+                    fifty_fifty_used = True
+                    print("50/50 used. Two incorrect choices were removed.")
+                    for label, choice in answer_choices.items():
+                        print(label + ") " + choice)
+        elif answer in answer_choices:
+            break
         else:
-            print("Please enter a, b, c, d, or h.")
+            print("Please enter an available answer label, h, or f.")
 
-        answer = input("Your answer: ").lower().strip()
-
+    elapsed_time = time.perf_counter() - question_start
+    print("Time:", round(elapsed_time, 1), "seconds")
     selected_answer = answer_choices[answer]
 
     if selected_answer in item["correct_answers"]:
         print("Correct!")
         print("Explanation:", item["explanation"])
-        return 1
+        if elapsed_time <= SPEED_BONUS_SECONDS:
+            print("Speed bonus: +1 point for answering within 10 seconds!")
+            return 2, fifty_fifty_used
+        print("No speed bonus this time.")
+        return 1, fifty_fifty_used
 
     print("Not quite.")
     print("Correct answer(s):", ", ".join(item["correct_answers"]))
     print("Explanation:", item["explanation"])
-    return 0
+    return 0, fifty_fifty_used
 
 
 def save_score(score, total, category):
@@ -103,24 +133,29 @@ def run_quiz():
     random.shuffle(selected_questions)
     score = 0
     total_questions = len(selected_questions)
+    fifty_fifty_used = False
 
     print("\nFilipino 101 Study Quiz")
     print("Questions:", total_questions)
+    print("Each correct answer is worth 1 point, with a +1 speed bonus")
+    print("for answers submitted within", SPEED_BONUS_SECONDS, "seconds.")
 
     for item in selected_questions:
-        score += ask_question(item)
+        question_score, fifty_fifty_used = ask_question(item, fifty_fifty_used)
+        score += question_score
 
-    save_score(score, total_questions, selected_category)
+    max_score = total_questions * 2
+    save_score(score, max_score, selected_category)
     print("Score saved in scores.txt")
 
-    return score, total_questions, selected_category
+    return score, max_score, selected_category
 
 
 if __name__ == "__main__":
-    final_score, total_questions, selected_category = run_quiz()
+    final_score, max_score, selected_category = run_quiz()
     print("\nCategory:", selected_category)
-    print("Score:", final_score, "out of", total_questions)
+    print("Score:", final_score, "out of", max_score, "possible points")
 
-    if total_questions > 0:
-        percentage = final_score / total_questions * 100
+    if max_score > 0:
+        percentage = final_score / max_score * 100
         print("Percentage:", round(percentage), "%")

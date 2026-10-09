@@ -3,26 +3,32 @@
 questions = [
     {
         "question": "What does masaya mean?",
-        "choices": {"a": "sad", "b": "happy", "c": "tired", "d": "angry"},
-        "answer": "b"
+        "choices": {"a": "sad", "b": "happy", "c": "joyful", "d": "angry"},
+        "answers": ["b", "c"]
     },
     {
         "question": "What does pagod mean?",
-        "choices": {"a": "thirsty", "b": "excited", "c": "tired", "d": "hungry"},
-        "answer": "c"
+        "choices": {"a": "thirsty", "b": "excited", "c": "tired", "d": "exhausted"},
+        "answers": ["c", "d"]
     }
 ]
 
 for item in questions:
-    print("\\n" + item["question"])
+    print("\n" + item["question"])
     for label, choice in item["choices"].items():
         print(label + ")", choice)
 
-    answer = input("Choose a, b, c, or d: ").lower()
+    answer = input("Choose all correct answers, separated by commas (e.g. a, c): ")
+    answers = {label.strip().lower() for label in answer.split(",")}
 
-    if answer == item["answer"]:
+    while not answers.issubset(item["choices"]):
+        answer = input("Enter valid labels separated by commas: ")
+        answers = {label.strip().lower() for label in answer.split(",")}
+
+    correct_answers = set(item["answers"])
+    if answers == correct_answers:
         print("Correct!")
     else:
-        print("Correct answer:", item["answer"], ")", item["choices"][item["answer"]])
-
-
+        print("Correct answers:")
+        for label in sorted(correct_answers):
+            print(label + ")", item["choices"][label])
