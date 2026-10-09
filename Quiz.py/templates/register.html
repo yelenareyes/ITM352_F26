@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Create account · Filipino 101 Quiz{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>Create an account</h1>
+  <p>Your quiz results and personal high score will be saved.</p>
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label for="username">Username</label>
+    <input id="username" name="username" autocomplete="username" required minlength="3" maxlength="24">
+    <small>3-24 characters: letters, numbers, underscore, period, or hyphen.</small>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="new-password" required minlength="8">
+    <small>Use at least 8 characters.</small>
+    <button type="submit">Create account</button>
+  </form>
+  <p>Already registered? <a href="{{ url_for('login') }}">Log in</a>.</p>
+</section>
+{% endblock %}

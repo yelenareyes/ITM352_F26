@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Results · Filipino 101 Quiz{% endblock %}
+{% block content %}
+<section class="card result-card">
+  <p class="eyebrow">Quiz complete</p>
+  <h1>Your results</h1>
+  <p class="score">{{ run["score"] }} <span>/ {{ total_possible }}</span></p>
+  <p>{{ percentage }}% across {{ total_questions }} question(s) in {{ run["category"] }}.</p>
+  {% if champion %}
+    <p>Grand champion: <strong>{{ champion["username"] }}</strong>.</p>
+  {% endif %}
+  <a class="button-link" href="{{ url_for('index') }}">Play again</a>
+  <a href="{{ url_for('leaderboard') }}">View leaderboard</a>
+</section>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Question {{ question_number }} · Filipino 101 Quiz{% endblock %}
+{% block content %}
+<section class="card quiz-card">
+  <div class="quiz-meta">
+    <span>{{ question["category"] }}</span>
+    <span>Question {{ question_number }} of {{ total_questions }}</span>
+  </div>
+  <p class="timer">Time on this question: <strong id="question-timer" data-elapsed="{{ elapsed_seconds }}" data-bonus-seconds="{{ speed_bonus_seconds }}">0.0 seconds</strong> <span id="timer-bonus">Speed bonus available</span></p>
+  <div class="progress"><span style="width: {{ (question_number / total_questions * 100)|round }}%"></span></div>
+  <h1>{{ question["question"] }}</h1>
+  {% if media %}
+    {% if media["type"] == "image" %}
+      <img class="question-media" src="{{ media['url'] }}" alt="{{ media['alt'] }}">
+    {% else %}
+      <video class="question-media" controls preload="metadata" aria-label="{{ media['alt'] }}">
+        <source src="{{ media['url'] }}">
+        Your browser does not support embedded video.
+      </video>
+    {% endif %}
+  {% endif %}
+  <form method="post" class="answer-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    {% for choice in choices %}
+      {% if choice not in eliminated %}
+        <label class="choice">
+          <input type="radio" name="answer" value="{{ choice }}" required>
+          <span>{{ choice }}</span>
+        </label>
+      {% endif %}
+    {% endfor %}
+    <button type="submit" name="action" value="answer">Submit answer</button>
+  </form>
+  <div class="quiz-tools">
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <button class="secondary" type="submit" name="action" value="hint">Show hint</button>
+    </form>
+    {% if not run["fifty_fifty_used"] %}
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button class="secondary" type="submit" name="action" value="fifty_fifty">Use 50/50</button>
+      </form>
+    {% else %}
+      <span class="used-label">50/50 already used</span>
+    {% endif %}
+  </div>
+  <p class="fine-print">A correct answer within {{ speed_bonus_seconds }} seconds earns a 1-point speed bonus.</p>
+</section>
+<script src="{{ url_for('static', filename='quiz_timer.js') }}" defer></script>
+{% endblock %}

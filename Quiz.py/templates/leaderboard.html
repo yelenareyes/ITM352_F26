@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Leaderboard · Filipino 101 Quiz{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Top scores</p>
+  <h1>Quiz leaderboard</h1>
+  {% if champion %}
+    <p class="champion">Grand champion: <strong>{{ champion["username"] }}</strong> at {{ "%.0f"|format(champion["high_score_percent"]) }}%</p>
+  {% else %}
+    <p>No scores yet. Be the first to play!</p>
+  {% endif %}
+</section>
+<section class="card">
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Rank</th><th>Player</th><th>High score</th><th>Points</th></tr></thead>
+      <tbody>
+        {% for user in users %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ user["username"] }}</td>
+            <td>{{ "%.0f"|format(user["high_score_percent"]) }}%</td>
+            <td>{{ user["high_score_points"] }} / {{ user["high_score_total"] }}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="4">No completed quizzes yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

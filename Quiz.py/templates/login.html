@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Log in · Filipino 101 Quiz{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>Welcome back</h1>
+  <p>Log in to play and save your high score.</p>
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label for="username">Username</label>
+    <input id="username" name="username" autocomplete="username" required maxlength="24">
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required>
+    <button type="submit">Log in</button>
+  </form>
+  <p>New here? <a href="{{ url_for('register') }}">Create an account</a>.</p>
+</section>
+{% endblock %}
