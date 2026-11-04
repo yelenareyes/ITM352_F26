@@ -27,3 +27,10 @@ sales_data = load_csv(csv_file)
 # Check if the dataframe was loaded successfully before attempting to print the first 10 rows
 if sales_data is not None:
     print(sales_data.head(10))
+
+# Check if the dataframe was loaded successfully before attempting to print the first 10 rows
+if sales_data is not None:
+    print(sales_data.head(10))
+#describe the dataframe field data types
+    print("\nData types of the dataframe fields:")
+    print(sales_data.dtypes)
