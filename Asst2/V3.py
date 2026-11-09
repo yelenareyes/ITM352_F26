@@ -1,11 +1,6 @@
 import pandas as pd
-import ssl
 import time
 from datetime import datetime
-
-
-#Temporary fix
-ssl._create_default_https_context = ssl._create_unverified_context
 
 
 def load_csv(filepath):
@@ -13,16 +8,41 @@ def load_csv(filepath):
     start_time = time.time()
 
     try:
-        df = pd.read_csv(filepath,engine='pyarrow',on_bad_lines='skip')
-        end_time = time.time()
-        load_time = end_time - start_time
-        print(f"CSV file loaded successfully in {load_time:.2f} seconds.")
-        print(f"Numbner of rows: {len(df)}")
-        return df
-
-    except Exception as e:
-        print("Error reading the CSV file:", e)
+        data = pd.read_csv(filepath, on_bad_lines="skip")
+    except (OSError, UnicodeError, ValueError, pd.errors.ParserError) as error:
+        print(f"Error reading the CSV file: {error}")
         return None
+
+    load_time = time.time() - start_time
+    print(f"CSV file loaded successfully in {load_time:.2f} seconds.")
+    print(f"Number of rows: {len(data)}")
+    return data
+
+
+def missing_columns(data, required_columns):
+    """Return required columns absent from a DataFrame."""
+    return [column for column in required_columns if column not in data.columns]
+
+
+def prepare_sales_data(data):
+    """Return a copy with numeric quantity, price, and calculated sales fields.
+
+    Invalid numeric cells become missing instead of crashing an analysis; pandas
+    then excludes those values from aggregations.
+    """
+    missing = missing_columns(data, ["quantity", "unit_price"])
+    if missing:
+        print("Missing required columns:", ", ".join(missing))
+        return None
+
+    sales = data.copy()
+    sales["quantity"] = pd.to_numeric(sales["quantity"], errors="coerce")
+    sales["unit_price"] = pd.to_numeric(sales["unit_price"], errors="coerce")
+    invalid_rows = sales[["quantity", "unit_price"]].isna().any(axis=1)
+    if invalid_rows.any():
+        print(f"Ignoring invalid quantity or price in {int(invalid_rows.sum())} rows.")
+    sales["sales"] = sales["quantity"] * sales["unit_price"]
+    return sales
 
 
 
@@ -117,7 +137,12 @@ def filter_sales_by_date_range(data):
 
 
 def show_employees_by_region(data):
-    """Print the number of unique employees in each sales region."""
+    """Print and return the number of unique employees in each sales region."""
+    missing = missing_columns(data, ["sales_region", "employee_id"])
+    if missing:
+        print("Missing required columns:", ", ".join(missing))
+        return None
+
     counts = data.groupby("sales_region")["employee_id"].nunique()
     print("\nNumber of employees by region:")
     print(counts.to_string())
@@ -158,6 +183,10 @@ def get_user_selection(options, prompt, required=False, single=False):
 
     Re-prompts on invalid input. An empty entry returns [] unless required.
     """
+    if not options:
+        print("No selectable fields are available.")
+        return []
+
     while True:
         print(prompt)
         for i, option in enumerate(options):
@@ -212,8 +241,8 @@ def generate_custom_pivot_table(data):
             values=values,
             aggfunc=agg_func
         )
-    except Exception as e:
-        print("Could not create the pivot table:", e)
+    except (KeyError, TypeError, ValueError) as error:
+        print("Could not create the pivot table:", error)
         return
 
     print("\nCustom pivot table:")
@@ -223,13 +252,15 @@ def generate_custom_pivot_table(data):
 
 def show_average_sales_by_region(data):
     """Pivot average sales (quantity * unit_price) by region, with state and sale type sub-columns."""
-    required = ["sales_region", "customer_state", "order_type", "quantity", "unit_price"]
-    missing = [col for col in required if col not in data.columns]
+    required = ["sales_region", "customer_state", "order_type"]
+    missing = missing_columns(data, required)
     if missing:
         print("Missing required columns:", ", ".join(missing))
-        return
+        return None
 
-    sales = data.assign(sales=data["quantity"] * data["unit_price"])
+    sales = prepare_sales_data(data)
+    if sales is None:
+        return None
     pivot_table = pd.pivot_table(
         sales,
         index="sales_region",
@@ -246,13 +277,15 @@ def show_average_sales_by_region(data):
 
 def show_total_sales_by_region_and_order_type(data):
     """Display total sales (quantity times unit price) by region and order type."""
-    required = ["sales_region", "order_type", "quantity", "unit_price"]
-    missing = [column for column in required if column not in data.columns]
+    required = ["sales_region", "order_type"]
+    missing = missing_columns(data, required)
     if missing:
         print("Missing required columns:", ", ".join(missing))
-        return
+        return None
 
-    sales = data.assign(sales=data["quantity"] * data["unit_price"])
+    sales = prepare_sales_data(data)
+    if sales is None:
+        return None
     totals = pd.pivot_table(
         sales,
         index="sales_region",
@@ -271,23 +304,16 @@ def show_total_sales_by_region_and_order_type(data):
 def show_sales_by_customer_type_and_order_type_by_state(data):
     """Display total sales by customer type and order type, by state."""
 
-    required = [
-        "customer_type",
-        "customer_state",
-        "order_type",
-        "quantity",
-        "unit_price"
-    ]
-
-    missing = [column for column in required if column not in data.columns]
+    required = ["customer_type", "customer_state", "order_type"]
+    missing = missing_columns(data, required)
 
     if missing:
         print("Missing required columns:", ", ".join(missing))
-        return
+        return None
 
-    sales = data.assign(
-        sales=data["quantity"] * data["unit_price"]
-    )
+    sales = prepare_sales_data(data)
+    if sales is None:
+        return None
 
     pivot_table = pd.pivot_table(
         sales,
@@ -309,22 +335,21 @@ def show_sales_by_customer_type_and_order_type_by_state(data):
 def show_total_sales_quantity_and_price_by_region_and_product(data):
     """Display total quantity and sales by region and product."""
 
-    required = ["sales_region", "product", "quantity", "unit_price"]
-
-    missing = [column for column in required if column not in data.columns]
+    required = ["sales_region", "produce_name"]
+    missing = missing_columns(data, required)
 
     if missing:
         print("Missing required columns:", ", ".join(missing))
-        return
+        return None
 
-    sales = data.assign(
-        sales=data["quantity"] * data["unit_price"]
-    )
+    sales = prepare_sales_data(data)
+    if sales is None:
+        return None
 
     pivot_table = pd.pivot_table(
         sales,
         index="sales_region",
-        columns="product",
+        columns="produce_name",
         values=["quantity", "sales"],
         aggfunc="sum",
         fill_value=0
@@ -341,17 +366,16 @@ def show_total_sales_quantity_and_price_by_region_and_product(data):
 def show_total_sales_quantity_and_price_by_customer_type(data):
     """Display total quantity and sales by order and customer type."""
 
-    required = ["order_type", "customer_type", "quantity", "unit_price"]
-
-    missing = [column for column in required if column not in data.columns]
+    required = ["order_type", "customer_type"]
+    missing = missing_columns(data, required)
 
     if missing:
         print("Missing required columns:", ", ".join(missing))
-        return
+        return None
 
-    sales = data.assign(
-        sales=data["quantity"] * data["unit_price"]
-    )
+    sales = prepare_sales_data(data)
+    if sales is None:
+        return None
 
     pivot_table = pd.pivot_table(
         sales,
@@ -372,12 +396,14 @@ def show_total_sales_quantity_and_price_by_customer_type(data):
 def show_max_min_sales_price_by_category(data):
     """Display the maximum and minimum unit price for each category."""
     required = ["product_category", "unit_price"]
-    missing = [column for column in required if column not in data.columns]
+    missing = missing_columns(data, required)
     if missing:
         print("Missing required columns:", ", ".join(missing))
-        return
+        return None
 
-    prices = data.groupby("product_category")["unit_price"].agg(
+    prices = data.assign(
+        unit_price=pd.to_numeric(data["unit_price"], errors="coerce")
+    ).groupby("product_category")["unit_price"].agg(
         maximum="max", minimum="min"
     )
     print("\nMaximum and minimum sales price by category:")
@@ -391,10 +417,12 @@ def exit_program(data=None):
     raise SystemExit(0)
 
 
+# Keeping each label next to its handler makes dashboard changes local: add,
+# remove, or reorder a task by editing this tuple.
 menu_options = (
     ("Show the first n rows of sales data", display_initial_rows),
-    ("Average sales by region with average sales by state and sale type", show_average_sales_by_region),
     ("Total sales by region and order type", show_total_sales_by_region_and_order_type),
+    ("Average sales by region with average sales by state and sale type", show_average_sales_by_region),
     ("Sales by customer type and order type by state.", show_sales_by_customer_type_and_order_type_by_state),
     ("Total sales quantity and price by region and product",show_total_sales_quantity_and_price_by_region_and_product),
     ("Total sales quantity and price by customer type", show_total_sales_quantity_and_price_by_customer_type),
@@ -410,7 +438,7 @@ menu_options = (
 def display_menu():
     """Show the menu and return a valid selection as an index into menu_options."""
     while True:
-        print("\nSales Data Menu")
+        print("\n--- Sales Data Dashboard ---")
         for number, (description, _) in enumerate(menu_options, start=1):
             print(f"  {number}. {description}")
 
@@ -422,7 +450,6 @@ def display_menu():
 
 def main():
     csv_file = 'https://drive.google.com/uc?id=1ujY0WCcePdotG2xdbLyeECFW9lCJ4t-K&export=download'
-    # csv_file = "junk.csv"  # Intentionally incorrect path to test error handling
     sales_data = load_csv(csv_file)
 
     if sales_data is None:
@@ -435,6 +462,7 @@ def main():
             if action in (display_initial_rows, exit_program):
                 action_data = sales_data
             else:
+                # All analysis handlers receive the same validated date slice.
                 action_data = filter_sales_by_date_range(sales_data)
                 if action_data is None or action_data.empty:
                     continue
