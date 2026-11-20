@@ -4,42 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
 
-    <h1>Question {{ question_number }} of {{ max_questions }}</h1>
-    <p>Score so far: {{ score }}</p>
+        <h1>Question {{ question_number }} of {{ max_questions }}</h1>
+        <p>Score so far: {{ score }}</p>
 
-    <h2>{{ question }}</h2>
+        <!-- Progress bar: fills as each question is answered (written with Claude's help) -->
+        {% set before = (question_number - 1) * 100 // max_questions %}
+        {% set after = question_number * 100 // max_questions %}
+        {% set width = after if answered else before %}
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ width }}">
+            <progress class="progress-fill" value="{{ width }}" max="100"></progress>
+        </div>
+        <p>{{ width }}% complete</p>
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+        <h2>{{ question }}</h2>
 
-    <form action="{{ url_for('answer') }}" method="post">
-        {% for option in options %}
-            <label>
-                <input type="radio" name="answer" value="{{ option }}"
-                    {% if answered %}disabled{% endif %}
-                    {% if answered and option == selected %}checked{% endif %}>
-                {{ option }}
-            </label><br>
-        {% endfor %}
-
-        {% if not answered %}
-            <br><button type="submit">Submit Answer</button>
+        {% if error %}
+            <p class="error">{{ error }}</p>
         {% endif %}
-    </form>
 
-    {% if answered %}
-        {% if is_correct %}
-            <p style="color: green;">Correct!</p>
+        {% if answered %}
+
+            <!-- After answering: the right option turns green and a wrong pick turns red -->
+            {% for option in options %}
+                {% set css_class = "option" %}
+                {% if option == correct_answer %}
+                    {% set css_class = "option correct-option" %}
+                {% elif option == selected %}
+                    {% set css_class = "option wrong-option" %}
+                {% endif %}
+                <div class="{{ css_class }}">{{ option }}</div>
+            {% endfor %}
+
+            <div class="feedback">
+                {% if is_correct %}
+                    <p class="correct">Correct!</p>
+                {% else %}
+                    <p class="wrong">Wrong. The correct answer is {{ correct_answer }}.</p>
+                {% endif %}
+                <p>{{ explanation }}</p>
+                <a class="button" href="{{ url_for('next_question') }}">Next</a>
+            </div>
+
         {% else %}
-            <p style="color: red;">Wrong. The correct answer is {{ correct_answer }}.</p>
-        {% endif %}
-        <p>{{ explanation }}</p>
-        <a href="{{ url_for('next_question') }}">Next</a>
-    {% endif %}
 
+            <form action="{{ url_for('answer') }}" method="post">
+                {% for option in options %}
+                    <label class="option">
+                        <input type="radio" name="answer" value="{{ option }}">
+                        {{ option }}
+                    </label>
+                {% endfor %}
+                <button type="submit">Submit Answer</button>
+            </form>
+
+        {% endif %}
+
+    </div>
 </body>
 </html>

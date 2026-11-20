@@ -4,30 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
 
-    <h1>Quiz Complete!</h1>
-    <p>Correct answers: {{ score }}</p>
-    <p>Incorrect answers: {{ max_questions - score }}</p>
-    <p>Your score: {{ score }} out of {{ max_questions }}</p>
-    <p>Time taken: {{ time_taken }} seconds</p>
+        <h1>Quiz Complete!</h1>
+        <p>Correct answers: {{ score }}</p>
+        <p>Incorrect answers: {{ max_questions - score }}</p>
+        <p>Your score: {{ score }} out of {{ max_questions }}</p>
+        <p>Time taken: {{ time_taken }} seconds</p>
 
-    <h2>Areas for Improvement</h2>
-    {% if missed %}
-        {% for item in missed %}
-            <p>
-                <strong>{{ item.question }}</strong><br>
-                Your answer: <span style="color: red;">{{ item.your_answer }}</span><br>
-                Correct answer: <span style="color: green;">{{ item.correct_answer }}</span><br>
-                {{ item.explanation }}
-            </p>
-        {% endfor %}
-    {% else %}
-        <p>Perfect score! You did not miss any questions.</p>
-    {% endif %}
+        <h2>Areas for Improvement</h2>
+        {% if missed %}
+            {% for item in missed %}
+                <div class="missed">
+                    <strong>{{ item.question }}</strong><br>
+                    Your answer: <span class="wrong">{{ item.your_answer }}</span><br>
+                    Correct answer: <span class="correct">{{ item.correct_answer }}</span><br>
+                    {{ item.explanation }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Perfect score! You did not miss any questions.</p>
+        {% endif %}
 
-    <a href="{{ url_for('index') }}">Play Again</a>
+        <a class="button" href="{{ url_for('index') }}">Play Again</a>
 
+    </div>
 </body>
 </html>

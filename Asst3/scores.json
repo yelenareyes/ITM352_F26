@@ -10,5 +10,29 @@
         "score": 4,
         "total": 5,
         "time_taken": 17
+    },
+    {
+        "name": "Player",
+        "score": 5,
+        "total": 5,
+        "time_taken": 24
+    },
+    {
+        "name": "Player",
+        "score": 3,
+        "total": 5,
+        "time_taken": 14
+    },
+    {
+        "name": "yelena",
+        "score": 3,
+        "total": 5,
+        "time_taken": 19
+    },
+    {
+        "name": "yelena",
+        "score": 2,
+        "total": 5,
+        "time_taken": 14
     }
 ]

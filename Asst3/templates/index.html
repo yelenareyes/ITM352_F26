@@ -4,16 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to the Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
 
-    <h1>Welcome to the Quiz</h1>
+        {% if error %}
+            <h1>Welcome to the Quiz</h1>
+            <p class="error">{{ error }}</p>
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% else %}
-        <a href="{{ url_for('quiz') }}">Start the Quiz</a>
-    {% endif %}
+        {% elif name %}
+            <h1>Welcome back, {{ name }}!</h1>
 
+            {% if history %}
+                <h2>Your Score History</h2>
+                <table class="history">
+                    <tr><th>Date</th><th>Score</th><th>Time</th></tr>
+                    {% for attempt in history|reverse %}
+                        <tr>
+                            <td>{{ attempt.date }}</td>
+                            <td>{{ attempt.score }} / {{ attempt.total }}</td>
+                            <td>{{ attempt.time_taken }} sec</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>You have not completed a quiz yet. Good luck on your first one!</p>
+            {% endif %}
+
+            <a class="button" href="{{ url_for('quiz') }}">Start the Quiz</a>
+            <p><a href="{{ url_for('switch_user') }}">Not {{ name }}? Switch user</a></p>
+
+        {% else %}
+            <h1>Welcome to the Quiz</h1>
+            <p>Enter your name to get started.</p>
+            {% if name_error %}
+                <p class="error">{{ name_error }}</p>
+            {% endif %}
+            <form action="{{ url_for('set_name') }}" method="post">
+                <input type="text" name="name" placeholder="Enter your name" maxlength="20">
+                <button type="submit">Continue</button>
+            </form>
+        {% endif %}
+
+    </div>
 </body>
 </html>

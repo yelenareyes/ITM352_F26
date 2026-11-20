@@ -1,0 +1,75 @@
+/* Progress bar: the fill animates from the old width to the new width (written with Claude's help) */
+.progress {
+    background-color: #d0d7e2;
+    border-radius: 10px;
+    height: 14px;
+    overflow: hidden;
+    margin: 10px 0 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #2f6fed;
+    border-radius: 10px;
+    animation: fill-bar 0.8s ease-out;
+}
+
+@keyframes fill-bar {
+    from { width: var(--from); }
+    to { width: var(--to); }
+}
+
+/* Visual feedback: correct answer turns green and pulses, wrong pick turns red and shakes */
+.correct-option {
+    background-color: #d4edda;
+    border-color: #1e7e34;
+    animation: pulse 0.5s;
+}
+
+.wrong-option {
+    background-color: #f8d7da;
+    border-color: #c0392b;
+    animation: shake 0.4s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+/* The explanation fades in after an answer is submitted */
+.feedback {
+    animation: fade-in 0.6s;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Name box and score history table on the start page */
+input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #d0d7e2;
+    border-radius: 6px;
+}
+
+table.history {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.history th, .history td {
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid #d0d7e2;
+}
