@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Player",
+        "score": 2,
+        "total": 5,
+        "time_taken": 35
+    },
+    {
+        "name": "Player",
+        "score": 4,
+        "total": 5,
+        "time_taken": 17
+    }
+]

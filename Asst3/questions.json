@@ -1,0 +1,32 @@
+[
+    {
+        "question": "What is the capital of France?",
+        "options": ["Paris", "London", "Berlin", "Madrid"],
+        "answer": "Paris",
+        "explanation": "Paris has been the capital of France for centuries."
+    },
+    {
+        "question": "What is the largest planet in our solar system?",
+        "options": ["Jupiter", "Saturn", "Earth", "Mars"],
+        "answer": "Jupiter",
+        "explanation": "Jupiter is more than twice as massive as all the other planets combined."
+    },
+    {
+        "question": "Which ocean surrounds the Hawaiian Islands?",
+        "options": ["Pacific", "Atlantic", "Indian", "Arctic"],
+        "answer": "Pacific",
+        "explanation": "Hawaii sits in the middle of the North Pacific Ocean."
+    },
+    {
+        "question": "What does HTML stand for?",
+        "options": ["HyperText Markup Language", "High Tech Modern Language", "HyperTransfer Markup Logic", "Home Tool Markup Language"],
+        "answer": "HyperText Markup Language",
+        "explanation": "HTML is the standard language used to structure web pages."
+    },
+    {
+        "question": "Which Python framework are we using for this web app?",
+        "options": ["Flask", "Pandas", "NumPy", "Tableau"],
+        "answer": "Flask",
+        "explanation": "Flask is a lightweight Python web framework."
+    }
+]

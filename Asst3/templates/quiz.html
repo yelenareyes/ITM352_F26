@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+
+    <h1>Question {{ question_number }} of {{ max_questions }}</h1>
+    <p>Score so far: {{ score }}</p>
+
+    <h2>{{ question }}</h2>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('answer') }}" method="post">
+        {% for option in options %}
+            <label>
+                <input type="radio" name="answer" value="{{ option }}"
+                    {% if answered %}disabled{% endif %}
+                    {% if answered and option == selected %}checked{% endif %}>
+                {{ option }}
+            </label><br>
+        {% endfor %}
+
+        {% if not answered %}
+            <br><button type="submit">Submit Answer</button>
+        {% endif %}
+    </form>
+
+    {% if answered %}
+        {% if is_correct %}
+            <p style="color: green;">Correct!</p>
+        {% else %}
+            <p style="color: red;">Wrong. The correct answer is {{ correct_answer }}.</p>
+        {% endif %}
+        <p>{{ explanation }}</p>
+        <a href="{{ url_for('next_question') }}">Next</a>
+    {% endif %}
+
+</body>
+</html>

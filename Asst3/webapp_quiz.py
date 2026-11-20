@@ -1,65 +1,223 @@
 # Application to manage the quiz webapp
 # Name: Yelena Reyes
-# Date: Nov. 13, 2026
+# Date: Nov. 19, 2026
 
-from flask import Flask, render_template, request, redirect, url_for
+import json
+import random
+import time
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 
 # Global variables
 score = 0
 question_number = 0
-questions = (
-    {
-        "questions": "What is the capital of France?",
-        "options": ["Paris", "London", "Berlin", "Madrid"]
-    },
-    {
-        "questions": "What is the largest planet in our solar system?",
-        "options": ["Jupiter", "Saturn", "Earth", "Mars"]
-    }
-)
-
-max_questions = len(questions)
+questions = []
+max_questions = 0
+error_message = ""
+start_time = None
+time_taken = None
+score_saved = False
+missed_questions = []
 
 app = Flask(__name__)
 
+
+def load_questions():
+    # Load the questions from the JSON file instead of hard-coding them.
+    # If the file is missing or broken, save a friendly message to show the user.
+    global questions, max_questions, error_message
+    error_message = ""
+    try:
+        with open('questions.json', 'r') as file:
+            questions = json.load(file)
+    except FileNotFoundError:
+        questions = []
+        error_message = "Sorry, the question file could not be found."
+    except json.JSONDecodeError:
+        questions = []
+        error_message = "Sorry, the question file is not formatted correctly."
+
+    max_questions = len(questions)
+
+
+def shuffle_questions():
+    # Randomize the question order and the answer options for each new session
+    random.shuffle(questions)
+    for q in questions:
+        random.shuffle(q['options'])
+
+
+# The read_scores() and write_scores() functions were written with Claude's help.
+# Prompt: "Store user score data in a JSON file using server-side Python."
+def read_scores():
+    # Get the saved scores from scores.json (an empty list if there are none yet)
+    try:
+        with open('scores.json', 'r') as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
+def write_scores(scores):
+    # Save the full list of scores back to scores.json
+    with open('scores.json', 'w') as file:
+        json.dump(scores, file, indent=4)
+
+
 @app.route('/')
 def index():
-    global score, question_number
+    global score, question_number, start_time, time_taken, score_saved, missed_questions
     score = 0
     question_number = 0
-    return render_template('index.html')
+    start_time = None
+    time_taken = None
+    score_saved = False
+    missed_questions = []
+    load_questions()
+    shuffle_questions()
+    return render_template('index.html', error=error_message)
 
-@app.route('/quiz', methods=['GET', 'POST'])
+
+@app.route('/quiz')
 def quiz():
-    global score, question_number, max_questions, questions
+    # Show the current question, or go to the results page if the quiz is over
+    global start_time
 
-    if request.method == 'POST':
-        # Capture the answer from the form
-        answer = request.form.get('answer')
+    if max_questions == 0:
+        return redirect(url_for('index'))
 
-        # Check if the answer is correct
-        if answer == questions[question_number]['options'][0]:  # Assuming the first option is correct
-            score += 1
-        question_number += 1
+    if start_time is None:
+        # Start the timer when the first question is displayed
+        start_time = time.time()
 
     if question_number < max_questions:
-        # Render the next question
-        return render_template('quiz.html', 
-                               question=questions[question_number]['questions'], 
+        return render_template('quiz.html',
+                               question=questions[question_number]['question'],
                                question_number=question_number + 1,
-                               options=questions[question_number]['options'])
+                               max_questions=max_questions,
+                               score=score,
+                               options=questions[question_number]['options'],
+                               answered=False)
     else:
-        # Quiz is over, redirect to the result page
-        return render_template('results.html', score=score, max_questions=max_questions)
+        return redirect(url_for('results'))
 
-    @app.route
-    def results():
-        # Display the final score
-        global score, max_questions
-        return render_template('results.html', score=score, max_questions=max_questions)    
+
+# The answer() and next_question() functions were written with Claude's help.
+# Prompt: "Show right/wrong feedback after each answer before moving to the next question."
+@app.route('/answer', methods=['POST'])
+def answer():
+    # Check the submitted answer and show feedback on the same question
+    global score
+
+    selected = request.form.get('answer')
+    current = questions[question_number]
+
+    if selected is None:
+        # Validation: the user clicked Submit without choosing an option
+        return render_template('quiz.html',
+                               question=current['question'],
+                               question_number=question_number + 1,
+                               max_questions=max_questions,
+                               score=score,
+                               options=current['options'],
+                               answered=False,
+                               error="Please choose an answer before submitting.")
+
+    is_correct = (selected == current['answer'])
+    if is_correct:
+        score += 1
+    else:
+        # Keep track of the missed question so it can be reviewed on the results page
+        missed_questions.append({"question": current['question'],
+                                 "your_answer": selected,
+                                 "correct_answer": current['answer'],
+                                 "explanation": current['explanation']})
+
+    return render_template('quiz.html',
+                           question=current['question'],
+                           question_number=question_number + 1,
+                           max_questions=max_questions,
+                           score=score,
+                           options=current['options'],
+                           answered=True,
+                           selected=selected,
+                           is_correct=is_correct,
+                           correct_answer=current['answer'],
+                           explanation=current['explanation'])
+
+
+@app.route('/next')
+def next_question():
+    # Move on to the next question after the user has seen the feedback
+    global question_number
+    question_number += 1
+    return redirect(url_for('quiz'))
+
+
+@app.route('/results')
+def results():
+    # Display the final score, the time taken, and save the score once
+    global time_taken, score_saved
+
+    if max_questions == 0 or start_time is None:
+        return redirect(url_for('index'))
+
+    if time_taken is None:
+        # Calculate the time only once so refreshing the page does not change it
+        time_taken = round(time.time() - start_time)
+
+    if not score_saved:
+        # Save this attempt to scores.json (name is a placeholder for now)
+        scores = read_scores()
+        scores.append({"name": "Player", "score": score,
+                       "total": max_questions, "time_taken": time_taken})
+        write_scores(scores)
+        score_saved = True
+
+    return render_template('results.html', score=score,
+                           max_questions=max_questions, time_taken=time_taken,
+                           missed=missed_questions)
+
+
+# The two API routes below were written with Claude's help.
+# Prompt: "Add RESTful API routes to get the questions and to store/retrieve user scores."
+@app.route('/api/questions', methods=['GET'])
+def api_questions():
+    # Return the questions and options as JSON (the correct answers are not included)
+    if max_questions == 0:
+        return jsonify({"error": "Questions are not loaded. Visit the home page first."}), 404
+
+    safe_questions = []
+    for q in questions:
+        safe_questions.append({"question": q['question'], "options": q['options']})
+    return jsonify(safe_questions)
+
+
+@app.route('/api/scores', methods=['GET', 'POST'])
+def api_scores():
+    # GET returns all saved scores, POST validates and saves a new score
+    if request.method == 'POST':
+        data = request.get_json(silent=True)
+
+        # Validation: make sure the data is there and has the right types
+        if data is None:
+            return jsonify({"error": "Please send the score as JSON."}), 400
+        if not isinstance(data.get('name'), str) or data['name'].strip() == "":
+            return jsonify({"error": "A name is required."}), 400
+        if not isinstance(data.get('score'), int) or not isinstance(data.get('total'), int):
+            return jsonify({"error": "Score and total must be whole numbers."}), 400
+
+        scores = read_scores()
+        scores.append({"name": data['name'].strip(), "score": data['score'],
+                       "total": data['total'], "time_taken": data.get('time_taken', 0)})
+        write_scores(scores)
+        return jsonify({"message": "Score saved."}), 201
+
+    return jsonify(read_scores())
+
 
 def main():
     app.run(debug=True)
+
 
 if __name__ == '__main__':
     main()
